@@ -5,16 +5,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.appspot.api.services.tictactoe.Tictactoe;
-import com.appspot.api.services.tictactoe.model.Board;
-import com.appspot.api.services.tictactoe.model.Score;
-import com.appspot.api.services.tictactoe.model.ScoreCollection;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
-import com.google.api.client.json.gson.GsonFactory;
-import com.google.devrel.samples.ttt.R;
-
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.Dialog;
@@ -29,6 +19,19 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.appspot.api.services.tictactoe.Tictactoe;
+import com.appspot.api.services.tictactoe.model.Board;
+import com.appspot.api.services.tictactoe.model.Score;
+import com.appspot.api.services.tictactoe.model.ScoreCollection;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.json.gson.GsonFactory;
+
+/**
+ * Main activity for the application, it handles the game UI and auth and
+ * spawns tasks to Endpoints.
+ */
 public class TictactoeActivity extends Activity {
   private static final Level LOGGING_LEVEL = Level.ALL;
 
@@ -39,14 +42,23 @@ public class TictactoeActivity extends Activity {
   static final int REQUEST_ACCOUNT_PICKER = 1;
   static final String PREF_AUTH_TOKEN = "authToken";
 
+  /**
+   * Preference object where the app stores the name of the preferred user.
+   */
   SharedPreferences settings;
   String accountName;
 
+  /**
+   * Credentials object that maintains tokens to send to the backend.
+   */
   GoogleAccountCredential credential;
 
   boolean signedIn = false;
   boolean waitingForMove = false;
 
+  /**
+   * Service object that manages requests to the backend.
+   */
   Tictactoe service;
 
   private static final int[] BOARD_BUTTONS = {
@@ -66,8 +78,11 @@ public class TictactoeActivity extends Activity {
     "TIE"
   };
 
-  // Button actions and their helpers.
-
+  /**
+   * Handles logic for clicking the sign in button.
+   *
+   * @param v current view within the application, for rendering updates
+   */
   public void signIn(View v) {
     if (!this.signedIn) {
       chooseAccount();
@@ -79,7 +94,7 @@ public class TictactoeActivity extends Activity {
     }
   }
 
-  void chooseAccount() {
+  private void chooseAccount() {
     startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
   }
 
@@ -107,6 +122,11 @@ public class TictactoeActivity extends Activity {
     editor2.commit();
   }
 
+  /**
+   * Handles filling in a square on the board.
+   *
+   * @param v current view within the application, for rendering updates
+   */
   public void clickSquare(View v) {
     Button button = (Button) v;
     if (waitingForMove && button.getText().equals("-")) {
@@ -123,6 +143,11 @@ public class TictactoeActivity extends Activity {
     }
   }
 
+  /**
+   * Handles resetting of the game board.
+   *
+   * @param v current view within the application, for rendering updates
+   */
   public void resetGame(View v) {
     setBoardFilling("---------");
     TextView victory = (TextView) findViewById(R.id.victory);
@@ -130,15 +155,23 @@ public class TictactoeActivity extends Activity {
     waitingForMove = true;
   }
 
-  // Remote API handling.
-
+  /**
+   * Gets the computer's move, spawning an AsyncTask to make the request.
+   *
+   * @param boardString state of the board
+   */
   private void getComputerMove(final String boardString) {
     Board board = new Board();
     board.setState(boardString);
     new GetComputerMoveTask().execute(board);
   }
 
+  /**
+   * Handles the request to the Board Endpoint, to get the computer's move,
+   * without blocking the UI.
+   */
   private class GetComputerMoveTask extends AsyncTask<Board, Board, Board> {
+    @Override
     protected Board doInBackground(Board... boards) {
       Board newBoard = null;
       try {
@@ -150,6 +183,7 @@ public class TictactoeActivity extends Activity {
       return newBoard;
     }
 
+    @Override
     protected void onPostExecute(Board board) {
       setBoardFilling(board.getState());
 
@@ -162,13 +196,24 @@ public class TictactoeActivity extends Activity {
     }
   }
 
+  /**
+   * Stores the game outcome on the server, spawning an AsyncTask to make the
+   * request.
+   *
+   * @param status outcome of the game
+   */
   private void sendResultToServer(int status) {
     Score score = new Score();
     score.setOutcome(STATUS_STRINGS[status]);
     new SendResultToServerTask().execute(score);
   }
 
+  /**
+   * Handles the request to the Score Endpoint, to save a score, without
+   * blocking the UI.
+   */
   private class SendResultToServerTask extends AsyncTask<Score, Void, Void> {
+    @Override
     protected Void doInBackground(Score... scores) {
       try {
         service.scores().insert(scores[0]).execute();
@@ -178,15 +223,24 @@ public class TictactoeActivity extends Activity {
       return null;
     }
 
+    @Override
     protected void onPostExecute(Void unused) {
       queryScores();
     }
   }
 
+  /**
+   * Queries for previous game outcomes for the current player, spawning an
+   * AsyncTask to make the request.
+   */
   private void queryScores() {
     new QueryScoresTask(this).execute();
   }
 
+  /**
+   * Handles the request to the Score Endpoint, to retrieve scores, without
+   * blocking the UI.
+   */
   private class QueryScoresTask extends AsyncTask<Void, Void, ScoreCollection> {
     Activity activity;
 
@@ -194,6 +248,7 @@ public class TictactoeActivity extends Activity {
       this.activity = activity;
     }
 
+    @Override
     protected ScoreCollection doInBackground(Void... unused) {
       ScoreCollection scores = null;
       try {
@@ -204,6 +259,7 @@ public class TictactoeActivity extends Activity {
       return scores;
     }
 
+    @Override
     protected void onPostExecute(ScoreCollection scores) {
       ListView gameHistory = (ListView) findViewById(R.id.gameHistory);
       ArrayList<String> values = new ArrayList<String>();
@@ -217,8 +273,6 @@ public class TictactoeActivity extends Activity {
       }
     }
   }
-
-  // Board state handling.
 
   private void setBoardEnablement(boolean state) {
     for (int i : BOARD_BUTTONS) {
@@ -246,8 +300,6 @@ public class TictactoeActivity extends Activity {
     }
   }
 
-  // Signin UI state handling.
-
   private void setSignInEnablement(boolean state) {
     Button button = (Button) findViewById(R.id.signin);
     if (state) {
@@ -261,8 +313,6 @@ public class TictactoeActivity extends Activity {
     TextView userLabel = (TextView) findViewById(R.id.userLabel);
     userLabel.setText(label);
   }
-
-  // Victory condition checking.
 
   private int checkForVictory(String board) {
     int status = 0;
@@ -319,8 +369,6 @@ public class TictactoeActivity extends Activity {
     sendResultToServer(status);
   }
 
-  // Board utility functions.
-
   private String getBoardString() {
     StringBuilder stringBuilder = new StringBuilder();
     for (int i : BOARD_BUTTONS) {
@@ -338,9 +386,11 @@ public class TictactoeActivity extends Activity {
                               .toString();
   }
 
-  // Activity delegates.
-
-  /** Called when the activity is first created. */
+  /**
+   * Called when the activity is first created. It displays the UI, checks
+   * for the account previously chosen to sign in (if available), and
+   * configures the service object.
+   */
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -387,7 +437,9 @@ public class TictactoeActivity extends Activity {
     }
   }
 
-  /** Check that Google Play services APK is installed and up to date. */
+  /**
+   * Check that Google Play services APK is installed and up to date.
+   */
   private boolean checkGooglePlayServicesAvailable() {
     final int connectionStatusCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
     if (GooglePlayServicesUtil.isUserRecoverableError(connectionStatusCode)) {
@@ -397,8 +449,12 @@ public class TictactoeActivity extends Activity {
     return true;
   }
 
+  /**
+   * Called if the device does not have Google Play Services installed.
+   */
   void showGooglePlayServicesAvailabilityErrorDialog(final int connectionStatusCode) {
     runOnUiThread(new Runnable() {
+      @Override
       public void run() {
         Dialog dialog = GooglePlayServicesUtil.getErrorDialog(
             connectionStatusCode, TictactoeActivity.this, REQUEST_GOOGLE_PLAY_SERVICES);
