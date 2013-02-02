@@ -36,8 +36,7 @@ public class TictactoeActivity extends Activity {
 
   static final String PREF_ACCOUNT_NAME = "accountName";
   static final int REQUEST_GOOGLE_PLAY_SERVICES = 0;
-  static final int REQUEST_AUTHORIZATION = 1;
-  static final int REQUEST_ACCOUNT_PICKER = 2;
+  static final int REQUEST_ACCOUNT_PICKER = 1;
   static final String PREF_AUTH_TOKEN = "authToken";
 
   SharedPreferences settings;
