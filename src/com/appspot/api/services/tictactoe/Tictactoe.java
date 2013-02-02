@@ -12,7 +12,7 @@
 /*
  * This file was generated.
  *  with google-apis-code-generator 1.2.0 (build: 2012-11-08 14:47:49 UTC)
- *  on 2012-11-15 at 23:50:55 UTC 
+ *  on 2012-11-15 at 23:50:55 UTC
  */
 
 package com.appspot.api.services.tictactoe;
@@ -69,7 +69,7 @@ public class Tictactoe extends AbstractGoogleJsonClient {
    *
    * @since 1.7
    */
-  public static final String DEFAULT_ROOT_URL = "https://tictactoe-java-auth.appspot.com/_ah/api/";
+  public static final String DEFAULT_ROOT_URL = "https://your_app_id.appspot.com/_ah/api/";
 
   /**
    * The default encoded service path of the service. This is determined when the library is
