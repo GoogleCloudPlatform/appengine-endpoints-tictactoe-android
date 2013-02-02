@@ -12,7 +12,6 @@ import com.appspot.api.services.tictactoe.model.ScoreCollection;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
-import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.devrel.samples.ttt.R;
 
@@ -32,9 +31,9 @@ import android.widget.TextView;
 
 public class TictactoeActivity extends Activity {
   private static final Level LOGGING_LEVEL = Level.ALL;
-  
+
   private static final String TAG = "TicTacToeSample";
-  
+
   static final String PREF_ACCOUNT_NAME = "accountName";
   static final int REQUEST_GOOGLE_PLAY_SERVICES = 0;
   static final int REQUEST_AUTHORIZATION = 1;
@@ -43,20 +42,20 @@ public class TictactoeActivity extends Activity {
 
   SharedPreferences settings;
   String accountName;
-  
+
   GoogleAccountCredential credential;
-  
+
   boolean signedIn = false;
   boolean waitingForMove = false;
-  
+
   Tictactoe service;
-  
+
   private static final int[] BOARD_BUTTONS = {
     R.id.topLeft, R.id.topMiddle, R.id.topRight,
     R.id.middleLeft, R.id.middleMiddle, R.id.middleRight,
     R.id.bottomLeft, R.id.bottomMiddle, R.id.bottomRight
   };
-  
+
   private static final int NOT_DONE = 0;
   private static final int WON = 1;
   private static final int LOST = 2;
@@ -67,9 +66,9 @@ public class TictactoeActivity extends Activity {
     "LOST",
     "TIE"
   };
-  
+
   // Button actions and their helpers.
-  
+
   public void signIn(View v) {
     if (!this.signedIn) {
       chooseAccount();
@@ -80,11 +79,11 @@ public class TictactoeActivity extends Activity {
       setAccountLabel("(not signed in)");
     }
   }
-  
+
   void chooseAccount() {
     startActivityForResult(credential.newChooseAccountIntent(), REQUEST_ACCOUNT_PICKER);
   }
-  
+
   private void setAccountName(String accountName) {
     SharedPreferences.Editor editor = settings.edit();
     editor.putString(PREF_ACCOUNT_NAME, accountName);
@@ -108,45 +107,39 @@ public class TictactoeActivity extends Activity {
     editor2.remove(PREF_AUTH_TOKEN);
     editor2.commit();
   }
-  
+
   public void clickSquare(View v) {
     Button button = (Button) v;
     if (waitingForMove && button.getText().equals("-")) {
       button.setText("X");
       waitingForMove = false;
       final String boardString = getBoardString();
-      
+
       int status = checkForVictory(boardString);
       if (status == NOT_DONE) {
         getComputerMove(boardString);
       } else {
-        handleFinish(status, this);
+        handleFinish(status);
       }
     }
   }
-  
+
   public void resetGame(View v) {
     setBoardFilling("---------");
     TextView victory = (TextView) findViewById(R.id.victory);
     victory.setText("");
     waitingForMove = true;
   }
-  
+
   // Remote API handling.
-  
+
   private void getComputerMove(final String boardString) {
     Board board = new Board();
     board.setState(boardString);
-    new GetComputerMoveTask(this).execute(board);
+    new GetComputerMoveTask().execute(board);
   }
-  
+
   private class GetComputerMoveTask extends AsyncTask<Board, Board, Board> {
-    private Activity activity;
-    
-    public GetComputerMoveTask(Activity activity) {
-      this.activity = activity;
-    }
-    
     protected Board doInBackground(Board... boards) {
       Board newBoard = null;
       try {
@@ -163,31 +156,23 @@ public class TictactoeActivity extends Activity {
 
       int status = checkForVictory(board.getState());
       if (status != 0) {
-        handleFinish(status, activity);
+        handleFinish(status);
       } else {
         waitingForMove = true;
       }
     }
   }
-  
-  private void sendResultToServer(int status, Activity activity) {
+
+  private void sendResultToServer(int status) {
     Score score = new Score();
     score.setOutcome(STATUS_STRINGS[status]);
-    new SendResultToServerTask(activity).execute(score);
+    new SendResultToServerTask().execute(score);
   }
-  
+
   private class SendResultToServerTask extends AsyncTask<Score, Void, Void> {
-    private Activity activity;
-    
-    public SendResultToServerTask(Activity activity) {
-      this.activity = activity;
-    }
-    
     protected Void doInBackground(Score... scores) {
       try {
         service.scores().insert(scores[0]).execute();
-      } catch (UserRecoverableAuthIOException re) {
-        activity.startActivityForResult(re.getIntent(), REQUEST_AUTHORIZATION);
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -198,24 +183,22 @@ public class TictactoeActivity extends Activity {
       queryScores();
     }
   }
-  
+
   private void queryScores() {
     new QueryScoresTask(this).execute();
   }
-  
+
   private class QueryScoresTask extends AsyncTask<Void, Void, ScoreCollection> {
     Activity activity;
-    
+
     public QueryScoresTask(Activity activity) {
       this.activity = activity;
     }
-    
+
     protected ScoreCollection doInBackground(Void... unused) {
       ScoreCollection scores = null;
       try {
         scores = service.scores().list().execute();
-      } catch (UserRecoverableAuthIOException re) {
-        activity.startActivityForResult(re.getIntent(), REQUEST_AUTHORIZATION);
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -235,9 +218,9 @@ public class TictactoeActivity extends Activity {
       }
     }
   }
-  
+
   // Board state handling.
-  
+
   private void setBoardEnablement(boolean state) {
     for (int i : BOARD_BUTTONS) {
       setItemEnablement(i, state);
@@ -247,7 +230,7 @@ public class TictactoeActivity extends Activity {
     setItemEnablement(R.id.gameHistory, state);
     setItemEnablement(R.id.previousGames, state);
   }
-  
+
   private void setItemEnablement(int id, boolean state) {
     View item = findViewById(id);
     if (state) {
@@ -256,16 +239,16 @@ public class TictactoeActivity extends Activity {
       item.setVisibility(View.INVISIBLE);
     }
   }
-  
+
   private void setBoardFilling(String boardString) {
     for (int i = 0; i < BOARD_BUTTONS.length; i++) {
       Button button = (Button) findViewById(BOARD_BUTTONS[i]);
       button.setText(boardString.subSequence(i, i+1));
     }
   }
-  
+
   // Signin UI state handling.
-  
+
   private void setSignInEnablement(boolean state) {
     Button button = (Button) findViewById(R.id.signin);
     if (state) {
@@ -274,22 +257,22 @@ public class TictactoeActivity extends Activity {
       button.setText("Sign Out");
     }
   }
-  
+
   private void setAccountLabel(String label) {
     TextView userLabel = (TextView) findViewById(R.id.userLabel);
     userLabel.setText(label);
   }
-  
+
   // Victory condition checking.
-  
+
   private int checkForVictory(String board) {
     int status = 0;
-    
+
     // Check rows and columns.
     for (int i = 0; i < 3; i++) {
       String rowString = getStringsAtPositions(board, i*3, (i*3)+1, (i*3)+2);
       status |= checkSectionVictory(rowString);
-      
+
       String colString = getStringsAtPositions(board, i, i+3, i+6);
       status |= checkSectionVictory(colString);
     }
@@ -307,10 +290,10 @@ public class TictactoeActivity extends Activity {
         return TIE;
       }
     }
-    
+
     return status;
   }
-  
+
   private int checkSectionVictory(String section) {
     char a = section.charAt(0);
     char b = section.charAt(1);
@@ -324,8 +307,8 @@ public class TictactoeActivity extends Activity {
     }
     return NOT_DONE;
   }
-  
-  private void handleFinish(int status, Activity activity) {
+
+  private void handleFinish(int status) {
     TextView victory = (TextView) findViewById(R.id.victory);
     if (status == WON) {
       victory.setText("You win!");
@@ -334,11 +317,11 @@ public class TictactoeActivity extends Activity {
     } else {
       victory.setText("You tied!");
     }
-    sendResultToServer(status, activity);
+    sendResultToServer(status);
   }
-  
+
   // Board utility functions.
-  
+
   private String getBoardString() {
     StringBuilder stringBuilder = new StringBuilder();
     for (int i : BOARD_BUTTONS) {
@@ -347,7 +330,7 @@ public class TictactoeActivity extends Activity {
     }
     return stringBuilder.toString();
   }
-  
+
   private String getStringsAtPositions(String string, int first, int second,
       int third) {
     return new StringBuilder().append(string.charAt(first))
@@ -355,9 +338,9 @@ public class TictactoeActivity extends Activity {
                               .append(string.charAt(third))
                               .toString();
   }
-  
+
   // Activity delegates.
-  
+
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -367,36 +350,29 @@ public class TictactoeActivity extends Activity {
     settings = getSharedPreferences(TAG, 0);
     credential = GoogleAccountCredential.usingAudience(this, ClientCredentials.AUDIENCE);
     setAccountName(settings.getString(PREF_ACCOUNT_NAME, null));
-    
+
     Tictactoe.Builder builder = new Tictactoe.Builder(
         AndroidHttp.newCompatibleTransport(), new GsonFactory(),
         credential);
     service = builder.build();
-    
+
     if (credential.getSelectedAccountName() != null) {
       onSignIn();
     }
-    
+
     Logger.getLogger("com.google.api.client").setLevel(LOGGING_LEVEL);
   }
-  
+
   @Override
   protected void onResume() {
     super.onResume();
     checkGooglePlayServicesAvailable();
   }
-  
+
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     switch (requestCode) {
-      case REQUEST_AUTHORIZATION:
-        if (resultCode == Activity.RESULT_OK) {
-          onSignIn();
-        } else {
-          chooseAccount();
-        }
-        break;
       case REQUEST_ACCOUNT_PICKER:
         if (data != null && data.getExtras() != null) {
           String accountName = data.getExtras().getString(AccountManager.KEY_ACCOUNT_NAME);
@@ -411,7 +387,7 @@ public class TictactoeActivity extends Activity {
         break;
     }
   }
-  
+
   /** Check that Google Play services APK is installed and up to date. */
   private boolean checkGooglePlayServicesAvailable() {
     final int connectionStatusCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
@@ -421,7 +397,7 @@ public class TictactoeActivity extends Activity {
     }
     return true;
   }
-  
+
   void showGooglePlayServicesAvailabilityErrorDialog(final int connectionStatusCode) {
     runOnUiThread(new Runnable() {
       public void run() {
