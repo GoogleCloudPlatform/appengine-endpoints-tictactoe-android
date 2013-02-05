@@ -12,7 +12,7 @@ but there are a few key differences:
   than in Java, even though the hold the same data. This will cause the generated
   classes corresponding to the schema to have different names.
 - Python supports enums and uses `'WHEN'` and `'TEXT'` for the `order` field in
-  queries, while Java simply uses `"0"` and `"1"`, respectively.
+  queries, while Java simply uses `"1"` and `"2"`, respectively.
 - The Python backend stores the current user for authenticated requests, but does
   not return the user in the score insert response or score list response.
 
