@@ -31,12 +31,12 @@ but there are a few key differences:
 2. Make sure the following files are added to a `libs` directory in your
    project (they come from the google-api-java-client and are not bundled with
    this sample):
-    - google-api-client-1.12.0-beta.jar
-    - google-api-client-android-1.12.0-beta.jar
-    - google-http-client-1.12.0-beta.jar
-    - google-http-client-android-1.12.0-beta.jar
-    - google-http-client-gson-1.12.0-beta.jar
-    - google-oauth-client-1.12.0-beta.jar
+    - google-api-client-1.13.2-beta.jar
+    - google-api-client-android-1.13.2-beta.jar
+    - google-http-client-1.13.1-beta.jar
+    - google-http-client-android-1.13.1-beta.jar
+    - google-http-client-gson-1.13.1-beta.jar
+    - google-oauth-client-1.13.1-beta.jar
     - gson-2.1.jar
     - guava-jdk5-13.0.jar
     - jsr305-1.3.9.jar
