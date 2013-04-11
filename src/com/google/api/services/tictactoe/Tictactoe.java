@@ -69,7 +69,7 @@ public class Tictactoe extends AbstractGoogleJsonClient {
    *
    * @since 1.7
    */
-  public static final String DEFAULT_ROOT_URL = "https://tictactoe-java-auth.appspot.com/_ah/api/";
+  public static final String DEFAULT_ROOT_URL = "https://your_app_id.appspot.com/_ah/api/";
 
   /**
    * The default encoded service path of the service. This is determined when the library is
