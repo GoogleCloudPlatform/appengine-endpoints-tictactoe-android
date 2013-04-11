@@ -13,14 +13,12 @@
  * Warning! This file is generated. Modify at your own risk.
  */
 
-package com.appspot.api.services.tictactoe.model;
+package com.google.api.services.tictactoe.model;
 
 import com.google.api.client.json.GenericJson;
-import com.google.api.client.json.JsonString;
-import com.google.api.client.util.DateTime;
 
 /**
- * Model definition for Score.
+ * Model definition for Board.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
  * transmitted over HTTP when working with the . For a detailed explanation see:
@@ -35,97 +33,28 @@ import com.google.api.client.util.DateTime;
  * @author Google, Inc.
  */
 @SuppressWarnings("javadoc")
-public final class Score extends GenericJson {
+public final class Board extends GenericJson {
 
   /**
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private User player;
-
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private String outcome;
-
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key @JsonString
-  private Long id;
-
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private DateTime played;
+  private String state;
 
   /**
 
    * The value returned may be {@code null}.
    */
-  public User getPlayer() {
-    return player;
+  public String getState() {
+    return state;
   }
 
   /**
 
    * The value set may be {@code null}.
    */
-  public Score setPlayer(User player) {
-    this.player = player;
-    return this;
-  }
-
-  /**
-
-   * The value returned may be {@code null}.
-   */
-  public String getOutcome() {
-    return outcome;
-  }
-
-  /**
-
-   * The value set may be {@code null}.
-   */
-  public Score setOutcome(String outcome) {
-    this.outcome = outcome;
-    return this;
-  }
-
-  /**
-
-   * The value returned may be {@code null}.
-   */
-  public Long getId() {
-    return id;
-  }
-
-  /**
-
-   * The value set may be {@code null}.
-   */
-  public Score setId(Long id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-
-   * The value returned may be {@code null}.
-   */
-  public DateTime getPlayed() {
-    return played;
-  }
-
-  /**
-
-   * The value set may be {@code null}.
-   */
-  public Score setPlayed(DateTime played) {
-    this.played = played;
+  public Board setState(String state) {
+    this.state = state;
     return this;
   }
 

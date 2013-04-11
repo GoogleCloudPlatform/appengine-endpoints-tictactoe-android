@@ -13,12 +13,12 @@
  * Warning! This file is generated. Modify at your own risk.
  */
 
-package com.appspot.api.services.tictactoe.model;
+package com.google.api.services.tictactoe.model;
 
 import com.google.api.client.json.GenericJson;
 
 /**
- * Model definition for Board.
+ * Model definition for ScoreCollection.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
  * transmitted over HTTP when working with the . For a detailed explanation see:
@@ -33,28 +33,34 @@ import com.google.api.client.json.GenericJson;
  * @author Google, Inc.
  */
 @SuppressWarnings("javadoc")
-public final class Board extends GenericJson {
+public final class ScoreCollection extends GenericJson {
 
   /**
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String state;
+  private java.util.List<Score> items;
+
+  static {
+    // hack to force ProGuard to consider Score used, since otherwise it would be stripped out
+    // see http://code.google.com/p/google-api-java-client/issues/detail?id=528
+    com.google.api.client.util.Data.nullOf(Score.class);
+  }
 
   /**
 
    * The value returned may be {@code null}.
    */
-  public String getState() {
-    return state;
+  public java.util.List<Score> getItems() {
+    return items;
   }
 
   /**
 
    * The value set may be {@code null}.
    */
-  public Board setState(String state) {
-    this.state = state;
+  public ScoreCollection setItems(java.util.List<Score> items) {
+    this.items = items;
     return this;
   }
 

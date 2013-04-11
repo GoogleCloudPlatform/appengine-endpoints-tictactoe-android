@@ -19,14 +19,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.appspot.api.services.tictactoe.Tictactoe;
-import com.appspot.api.services.tictactoe.model.Board;
-import com.appspot.api.services.tictactoe.model.Score;
-import com.appspot.api.services.tictactoe.model.ScoreCollection;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.services.tictactoe.Tictactoe;
+import com.google.api.services.tictactoe.model.Board;
+import com.google.api.services.tictactoe.model.Score;
+import com.google.api.services.tictactoe.model.ScoreCollection;
 
 /**
  * Main activity for the application, it handles the game UI and auth and

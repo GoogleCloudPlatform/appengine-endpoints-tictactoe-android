@@ -11,11 +11,11 @@
  */
 /*
  * This file was generated.
- *  with google-apis-code-generator 1.2.0 (build: 2012-11-08 14:47:49 UTC)
- *  on 2012-11-15 at 23:50:55 UTC
+ *  with google-apis-code-generator 1.3.0 (build: 2013-04-09 19:13:20 UTC)
+ *  on 2013-04-11 at 20:44:37 UTC 
  */
 
-package com.appspot.api.services.tictactoe;
+package com.google.api.services.tictactoe;
 
 import com.google.api.client.googleapis.GoogleUtils;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
@@ -57,10 +57,10 @@ public class Tictactoe extends AbstractGoogleJsonClient {
 
   // Note: Leave this static initializer at the top of the file.
   static {
-    Preconditions.checkState(GoogleUtils.VERSION.equals("1.12.0-beta"),
+    Preconditions.checkState(GoogleUtils.VERSION.equals("1.13.2-beta"),
         "You are currently running with version %s of google-api-client. " +
-        "You need version 1.12.0-beta of google-api-client to run version " +
-        "1.12.0-beta of the  library.", GoogleUtils.VERSION);
+        "You need version 1.13.2-beta of google-api-client to run version " +
+        "1.13.2-beta of the  library.", GoogleUtils.VERSION);
   }
 
   /**
@@ -69,7 +69,7 @@ public class Tictactoe extends AbstractGoogleJsonClient {
    *
    * @since 1.7
    */
-  public static final String DEFAULT_ROOT_URL = "https://your_app_id.appspot.com/_ah/api/";
+  public static final String DEFAULT_ROOT_URL = "https://tictactoe-java-auth.appspot.com/_ah/api/";
 
   /**
    * The default encoded service path of the service. This is determined when the library is
@@ -170,26 +170,37 @@ public class Tictactoe extends AbstractGoogleJsonClient {
      * This request holds the parameters needed by the the tictactoe server.  After setting any optional
      * parameters, call the {@link Getmove#execute()} method to invoke the remote operation.
      *
-     * @param content the {@link com.appspot.api.services.tictactoe.model.Board}
+     * @param content the {@link com.google.api.services.tictactoe.model.Board}
      * @return the request
      */
-    public Getmove getmove(com.appspot.api.services.tictactoe.model.Board content) throws java.io.IOException {
+    public Getmove getmove(com.google.api.services.tictactoe.model.Board content) throws java.io.IOException {
       Getmove result = new Getmove(content);
       initialize(result);
       return result;
     }
 
-    public class Getmove extends TictactoeRequest<com.appspot.api.services.tictactoe.model.Board> {
+    public class Getmove extends TictactoeRequest<com.google.api.services.tictactoe.model.Board> {
 
       private static final String REST_PATH = "board";
 
-      Getmove(com.appspot.api.services.tictactoe.model.Board content) {
-        super(Tictactoe.this, "POST", REST_PATH, content, com.appspot.api.services.tictactoe.model.Board.class);
+      /**
+       * Create a request for the method "board.getmove".
+       *
+       * This request holds the parameters needed by the the tictactoe server.  After setting any
+       * optional parameters, call the {@link Getmove#execute()} method to invoke the remote operation.
+       * <p> {@link Getmove#initialize(AbstractGoogleClientRequest)} must be called to initialize this
+       * instance immediately after invoking the constructor. </p>
+       *
+       * @param content the {@link com.google.api.services.tictactoe.model.Board}
+       * @since 1.13
+       */
+      protected Getmove(com.google.api.services.tictactoe.model.Board content) {
+        super(Tictactoe.this, "POST", REST_PATH, content, com.google.api.services.tictactoe.model.Board.class);
       }
 
       @Override
-      public Getmove setPrettyPrint(Boolean prettyPrint) {
-        return (Getmove) super.setPrettyPrint(prettyPrint);
+      public Getmove setAlt(String alt) {
+        return (Getmove) super.setAlt(alt);
       }
 
       @Override
@@ -198,8 +209,8 @@ public class Tictactoe extends AbstractGoogleJsonClient {
       }
 
       @Override
-      public Getmove setQuotaUser(String quotaUser) {
-        return (Getmove) super.setQuotaUser(quotaUser);
+      public Getmove setKey(String key) {
+        return (Getmove) super.setKey(key);
       }
 
       @Override
@@ -208,18 +219,18 @@ public class Tictactoe extends AbstractGoogleJsonClient {
       }
 
       @Override
-      public Getmove setKey(String key) {
-        return (Getmove) super.setKey(key);
+      public Getmove setPrettyPrint(Boolean prettyPrint) {
+        return (Getmove) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Getmove setQuotaUser(String quotaUser) {
+        return (Getmove) super.setQuotaUser(quotaUser);
       }
 
       @Override
       public Getmove setUserIp(String userIp) {
         return (Getmove) super.setUserIp(userIp);
-      }
-
-      @Override
-      public Getmove setAlt(String alt) {
-        return (Getmove) super.setAlt(alt);
       }
 
     }
@@ -252,26 +263,37 @@ public class Tictactoe extends AbstractGoogleJsonClient {
      * This request holds the parameters needed by the the tictactoe server.  After setting any optional
      * parameters, call the {@link Insert#execute()} method to invoke the remote operation.
      *
-     * @param content the {@link com.appspot.api.services.tictactoe.model.Score}
+     * @param content the {@link com.google.api.services.tictactoe.model.Score}
      * @return the request
      */
-    public Insert insert(com.appspot.api.services.tictactoe.model.Score content) throws java.io.IOException {
+    public Insert insert(com.google.api.services.tictactoe.model.Score content) throws java.io.IOException {
       Insert result = new Insert(content);
       initialize(result);
       return result;
     }
 
-    public class Insert extends TictactoeRequest<com.appspot.api.services.tictactoe.model.Score> {
+    public class Insert extends TictactoeRequest<com.google.api.services.tictactoe.model.Score> {
 
       private static final String REST_PATH = "score";
 
-      Insert(com.appspot.api.services.tictactoe.model.Score content) {
-        super(Tictactoe.this, "POST", REST_PATH, content, com.appspot.api.services.tictactoe.model.Score.class);
+      /**
+       * Create a request for the method "scores.insert".
+       *
+       * This request holds the parameters needed by the the tictactoe server.  After setting any
+       * optional parameters, call the {@link Insert#execute()} method to invoke the remote operation.
+       * <p> {@link Insert#initialize(AbstractGoogleClientRequest)} must be called to initialize this
+       * instance immediately after invoking the constructor. </p>
+       *
+       * @param content the {@link com.google.api.services.tictactoe.model.Score}
+       * @since 1.13
+       */
+      protected Insert(com.google.api.services.tictactoe.model.Score content) {
+        super(Tictactoe.this, "POST", REST_PATH, content, com.google.api.services.tictactoe.model.Score.class);
       }
 
       @Override
-      public Insert setPrettyPrint(Boolean prettyPrint) {
-        return (Insert) super.setPrettyPrint(prettyPrint);
+      public Insert setAlt(String alt) {
+        return (Insert) super.setAlt(alt);
       }
 
       @Override
@@ -280,8 +302,8 @@ public class Tictactoe extends AbstractGoogleJsonClient {
       }
 
       @Override
-      public Insert setQuotaUser(String quotaUser) {
-        return (Insert) super.setQuotaUser(quotaUser);
+      public Insert setKey(String key) {
+        return (Insert) super.setKey(key);
       }
 
       @Override
@@ -290,18 +312,18 @@ public class Tictactoe extends AbstractGoogleJsonClient {
       }
 
       @Override
-      public Insert setKey(String key) {
-        return (Insert) super.setKey(key);
+      public Insert setPrettyPrint(Boolean prettyPrint) {
+        return (Insert) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public Insert setQuotaUser(String quotaUser) {
+        return (Insert) super.setQuotaUser(quotaUser);
       }
 
       @Override
       public Insert setUserIp(String userIp) {
         return (Insert) super.setUserIp(userIp);
-      }
-
-      @Override
-      public Insert setAlt(String alt) {
-        return (Insert) super.setAlt(alt);
       }
 
     }
@@ -319,12 +341,22 @@ public class Tictactoe extends AbstractGoogleJsonClient {
       return result;
     }
 
-    public class List extends TictactoeRequest<com.appspot.api.services.tictactoe.model.ScoreCollection> {
+    public class List extends TictactoeRequest<com.google.api.services.tictactoe.model.ScoreCollection> {
 
       private static final String REST_PATH = "score";
 
-      List() {
-        super(Tictactoe.this, "GET", REST_PATH, null, com.appspot.api.services.tictactoe.model.ScoreCollection.class);
+      /**
+       * Create a request for the method "scores.list".
+       *
+       * This request holds the parameters needed by the the tictactoe server.  After setting any
+       * optional parameters, call the {@link List#execute()} method to invoke the remote operation. <p>
+       * {@link List#initialize(AbstractGoogleClientRequest)} must be called to initialize this instance
+       * immediately after invoking the constructor. </p>
+       *
+       * @since 1.13
+       */
+      protected List() {
+        super(Tictactoe.this, "GET", REST_PATH, null, com.google.api.services.tictactoe.model.ScoreCollection.class);
       }
 
       @Override
@@ -338,8 +370,8 @@ public class Tictactoe extends AbstractGoogleJsonClient {
       }
 
       @Override
-      public List setPrettyPrint(Boolean prettyPrint) {
-        return (List) super.setPrettyPrint(prettyPrint);
+      public List setAlt(String alt) {
+        return (List) super.setAlt(alt);
       }
 
       @Override
@@ -348,8 +380,8 @@ public class Tictactoe extends AbstractGoogleJsonClient {
       }
 
       @Override
-      public List setQuotaUser(String quotaUser) {
-        return (List) super.setQuotaUser(quotaUser);
+      public List setKey(String key) {
+        return (List) super.setKey(key);
       }
 
       @Override
@@ -358,18 +390,18 @@ public class Tictactoe extends AbstractGoogleJsonClient {
       }
 
       @Override
-      public List setKey(String key) {
-        return (List) super.setKey(key);
+      public List setPrettyPrint(Boolean prettyPrint) {
+        return (List) super.setPrettyPrint(prettyPrint);
+      }
+
+      @Override
+      public List setQuotaUser(String quotaUser) {
+        return (List) super.setQuotaUser(quotaUser);
       }
 
       @Override
       public List setUserIp(String userIp) {
         return (List) super.setUserIp(userIp);
-      }
-
-      @Override
-      public List setAlt(String alt) {
-        return (List) super.setAlt(alt);
       }
 
       @com.google.api.client.util.Key
