@@ -13,12 +13,14 @@
  * Warning! This file is generated. Modify at your own risk.
  */
 
-package com.appspot.api.services.tictactoe.model;
+package com.google.api.services.tictactoe.model;
 
 import com.google.api.client.json.GenericJson;
+import com.google.api.client.json.JsonString;
+import com.google.api.client.util.DateTime;
 
 /**
- * Model definition for ScoreCollection.
+ * Model definition for Score.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
  * transmitted over HTTP when working with the . For a detailed explanation see:
@@ -33,34 +35,97 @@ import com.google.api.client.json.GenericJson;
  * @author Google, Inc.
  */
 @SuppressWarnings("javadoc")
-public final class ScoreCollection extends GenericJson {
+public final class Score extends GenericJson {
+
+  /**
+   * The value may be {@code null}.
+   */
+  @com.google.api.client.util.Key @JsonString
+  private Long id;
 
   /**
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private java.util.List<Score> items;
+  private String outcome;
 
-  static {
-    // hack to force ProGuard to consider Score used, since otherwise it would be stripped out
-    // see http://code.google.com/p/google-api-java-client/issues/detail?id=528
-    com.google.api.client.util.Data.nullOf(Score.class);
-  }
+  /**
+   * The value may be {@code null}.
+   */
+  @com.google.api.client.util.Key
+  private DateTime played;
+
+  /**
+   * The value may be {@code null}.
+   */
+  @com.google.api.client.util.Key
+  private User player;
 
   /**
 
    * The value returned may be {@code null}.
    */
-  public java.util.List<Score> getItems() {
-    return items;
+  public Long getId() {
+    return id;
   }
 
   /**
 
    * The value set may be {@code null}.
    */
-  public ScoreCollection setItems(java.util.List<Score> items) {
-    this.items = items;
+  public Score setId(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+
+   * The value returned may be {@code null}.
+   */
+  public String getOutcome() {
+    return outcome;
+  }
+
+  /**
+
+   * The value set may be {@code null}.
+   */
+  public Score setOutcome(String outcome) {
+    this.outcome = outcome;
+    return this;
+  }
+
+  /**
+
+   * The value returned may be {@code null}.
+   */
+  public DateTime getPlayed() {
+    return played;
+  }
+
+  /**
+
+   * The value set may be {@code null}.
+   */
+  public Score setPlayed(DateTime played) {
+    this.played = played;
+    return this;
+  }
+
+  /**
+
+   * The value returned may be {@code null}.
+   */
+  public User getPlayer() {
+    return player;
+  }
+
+  /**
+
+   * The value set may be {@code null}.
+   */
+  public Score setPlayer(User player) {
+    this.player = player;
     return this;
   }
 

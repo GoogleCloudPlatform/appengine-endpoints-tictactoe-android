@@ -11,11 +11,11 @@
  */
 /*
  * This file was generated.
- *  with google-apis-code-generator 1.2.0 (build: 2012-11-08 14:47:49 UTC)
- *  on 2012-11-15 at 23:50:55 UTC 
+ *  with google-apis-code-generator 1.3.0 (build: 2013-04-09 19:13:20 UTC)
+ *  on 2013-04-11 at 20:44:37 UTC 
  */
 
-package com.appspot.api.services.tictactoe;
+package com.google.api.services.tictactoe;
 
 /**
  * Available OAuth 2.0 scopes for use with the .
