@@ -6,7 +6,7 @@ Google Cloud Endpoints, App Engine, Java, and Android.
 
 **NOTE:** This sample was written with a Java backend in mind. As a result, 
 the generated code will differ slightly than that for the [Python Tic Tac
-Toe sample][7]. For the most part this will be immaterial to the sample,
+Toe sample][8]. For the most part this will be immaterial to the sample,
 but there are a few key differences:
 - The generated schema names in the discovery document are different in Python
   than in Java, even though the hold the same data. This will cause the generated
