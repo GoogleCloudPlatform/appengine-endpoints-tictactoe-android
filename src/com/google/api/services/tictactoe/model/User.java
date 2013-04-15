@@ -13,7 +13,7 @@
  * Warning! This file is generated. Modify at your own risk.
  */
 
-package com.appspot.api.services.tictactoe.model;
+package com.google.api.services.tictactoe.model;
 
 import com.google.api.client.json.GenericJson;
 
@@ -39,18 +39,6 @@ public final class User extends GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
-  private String nickname;
-
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private String federatedIdentity;
-
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
   private String authDomain;
 
   /**
@@ -63,41 +51,19 @@ public final class User extends GenericJson {
    * The value may be {@code null}.
    */
   @com.google.api.client.util.Key
+  private String federatedIdentity;
+
+  /**
+   * The value may be {@code null}.
+   */
+  @com.google.api.client.util.Key
+  private String nickname;
+
+  /**
+   * The value may be {@code null}.
+   */
+  @com.google.api.client.util.Key
   private String userId;
-
-  /**
-
-   * The value returned may be {@code null}.
-   */
-  public String getNickname() {
-    return nickname;
-  }
-
-  /**
-
-   * The value set may be {@code null}.
-   */
-  public User setNickname(String nickname) {
-    this.nickname = nickname;
-    return this;
-  }
-
-  /**
-
-   * The value returned may be {@code null}.
-   */
-  public String getFederatedIdentity() {
-    return federatedIdentity;
-  }
-
-  /**
-
-   * The value set may be {@code null}.
-   */
-  public User setFederatedIdentity(String federatedIdentity) {
-    this.federatedIdentity = federatedIdentity;
-    return this;
-  }
 
   /**
 
@@ -130,6 +96,40 @@ public final class User extends GenericJson {
    */
   public User setEmail(String email) {
     this.email = email;
+    return this;
+  }
+
+  /**
+
+   * The value returned may be {@code null}.
+   */
+  public String getFederatedIdentity() {
+    return federatedIdentity;
+  }
+
+  /**
+
+   * The value set may be {@code null}.
+   */
+  public User setFederatedIdentity(String federatedIdentity) {
+    this.federatedIdentity = federatedIdentity;
+    return this;
+  }
+
+  /**
+
+   * The value returned may be {@code null}.
+   */
+  public String getNickname() {
+    return nickname;
+  }
+
+  /**
+
+   * The value set may be {@code null}.
+   */
+  public User setNickname(String nickname) {
+    this.nickname = nickname;
     return this;
   }
 

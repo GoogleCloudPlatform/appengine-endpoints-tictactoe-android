@@ -11,11 +11,11 @@
  */
 /*
  * This file was generated.
- *  with google-apis-code-generator 1.2.0 (build: 2012-11-08 14:47:49 UTC)
- *  on 2012-11-15 at 23:50:55 UTC 
+ *  with google-apis-code-generator 1.3.0 (build: 2013-04-09 19:13:20 UTC)
+ *  on 2013-04-11 at 20:44:37 UTC 
  */
 
-package com.appspot.api.services.tictactoe;
+package com.google.api.services.tictactoe;
 
 import com.google.api.client.googleapis.services.json.AbstractGoogleJsonClientRequest;
 import com.google.api.client.http.HttpHeaders;
@@ -54,20 +54,20 @@ public abstract class TictactoeRequest<T> extends AbstractGoogleJsonClientReques
         responseClass);
   }
 
-  /** Returns response with indentations and line breaks. */
+  /** Data format for the response. */
   @com.google.api.client.util.Key
-  private Boolean prettyPrint;
+  private String alt;
 
   /**
-   * Returns response with indentations and line breaks.    [default: true]
+   * Data format for the response.    [default: json]
    */
-  public Boolean getPrettyPrint() {
-    return prettyPrint;
+  public String getAlt() {
+    return alt;
   }
 
-  /** Returns response with indentations and line breaks. */
-  public TictactoeRequest<T> setPrettyPrint(Boolean prettyPrint) {
-    this.prettyPrint = prettyPrint;
+  /** Data format for the response. */
+  public TictactoeRequest<T> setAlt(String alt) {
+    this.alt = alt;
     return this;
   }
 
@@ -85,47 +85,6 @@ public abstract class TictactoeRequest<T> extends AbstractGoogleJsonClientReques
   /** Selector specifying which fields to include in a partial response. */
   public TictactoeRequest<T> setFields(String fields) {
     this.fields = fields;
-    return this;
-  }
-
-  /**
- * Available to use for quota purposes for server-side applications. Can be any arbitrary string
- * assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.
- */
-  @com.google.api.client.util.Key
-  private String quotaUser;
-
-  /**
-   * Available to use for quota purposes for server-side applications. Can be any arbitrary string
-   * assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.
-   */
-  public String getQuotaUser() {
-    return quotaUser;
-  }
-
-  /**
- * Available to use for quota purposes for server-side applications. Can be any arbitrary string
- * assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.
- */
-  public TictactoeRequest<T> setQuotaUser(String quotaUser) {
-    this.quotaUser = quotaUser;
-    return this;
-  }
-
-  /** OAuth 2.0 token for the current user. */
-  @com.google.api.client.util.Key("oauth_token")
-  private String oauthToken;
-
-  /**
-   * OAuth 2.0 token for the current user.
-   */
-  public String getOauthToken() {
-    return oauthToken;
-  }
-
-  /** OAuth 2.0 token for the current user. */
-  public TictactoeRequest<T> setOauthToken(String oauthToken) {
-    this.oauthToken = oauthToken;
     return this;
   }
 
@@ -153,6 +112,64 @@ public abstract class TictactoeRequest<T> extends AbstractGoogleJsonClientReques
     return this;
   }
 
+  /** OAuth 2.0 token for the current user. */
+  @com.google.api.client.util.Key("oauth_token")
+  private String oauthToken;
+
+  /**
+   * OAuth 2.0 token for the current user.
+   */
+  public String getOauthToken() {
+    return oauthToken;
+  }
+
+  /** OAuth 2.0 token for the current user. */
+  public TictactoeRequest<T> setOauthToken(String oauthToken) {
+    this.oauthToken = oauthToken;
+    return this;
+  }
+
+  /** Returns response with indentations and line breaks. */
+  @com.google.api.client.util.Key
+  private Boolean prettyPrint;
+
+  /**
+   * Returns response with indentations and line breaks.    [default: true]
+   */
+  public Boolean getPrettyPrint() {
+    return prettyPrint;
+  }
+
+  /** Returns response with indentations and line breaks. */
+  public TictactoeRequest<T> setPrettyPrint(Boolean prettyPrint) {
+    this.prettyPrint = prettyPrint;
+    return this;
+  }
+
+  /**
+ * Available to use for quota purposes for server-side applications. Can be any arbitrary string
+ * assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.
+ */
+  @com.google.api.client.util.Key
+  private String quotaUser;
+
+  /**
+   * Available to use for quota purposes for server-side applications. Can be any arbitrary string
+   * assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.
+   */
+  public String getQuotaUser() {
+    return quotaUser;
+  }
+
+  /**
+ * Available to use for quota purposes for server-side applications. Can be any arbitrary string
+ * assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.
+ */
+  public TictactoeRequest<T> setQuotaUser(String quotaUser) {
+    this.quotaUser = quotaUser;
+    return this;
+  }
+
   /**
  * IP address of the site where the request originates. Use this if you want to enforce per-user
  * limits.
@@ -174,23 +191,6 @@ public abstract class TictactoeRequest<T> extends AbstractGoogleJsonClientReques
  */
   public TictactoeRequest<T> setUserIp(String userIp) {
     this.userIp = userIp;
-    return this;
-  }
-
-  /** Data format for the response. */
-  @com.google.api.client.util.Key
-  private String alt;
-
-  /**
-   * Data format for the response.    [default: json]
-   */
-  public String getAlt() {
-    return alt;
-  }
-
-  /** Data format for the response. */
-  public TictactoeRequest<T> setAlt(String alt) {
-    this.alt = alt;
     return this;
   }
 
