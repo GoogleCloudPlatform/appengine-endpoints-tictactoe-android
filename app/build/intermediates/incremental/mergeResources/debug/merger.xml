@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="main" >
+        <source path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/main/res" >
+            <file
+                name="ic_launcher"
+                path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/main/res/drawable-hdpi/ic_launcher.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/main/res/drawable-ldpi/ic_launcher.png"
+                qualifiers="ldpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/main/res/drawable-mdpi/ic_launcher.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="main"
+                path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/main/res/layout/main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/main/res/values/strings.xml"
+                qualifiers="" >
+                <string name="app_name" >Tictactoe
+                </string>
+                <string name="hello" >Hello World, TictactoeActivity!
+                </string>
+            </file>
+        </source>
+        <source path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/build/generated/res/rs/debug" />
+        <source path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/build/generated/res/generated/debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/debug/res" />
+    </dataSet>
+
+</merger>
