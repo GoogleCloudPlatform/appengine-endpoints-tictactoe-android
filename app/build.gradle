@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.google.devrel.samples.ttt"
-        minSdkVersion 14
-        targetSdkVersion 14
+        minSdkVersion 17
+        targetSdkVersion 22
     }
 
     buildTypes {
