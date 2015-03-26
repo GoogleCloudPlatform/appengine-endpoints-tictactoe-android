@@ -15,139 +15,132 @@
 
 package com.google.api.services.tictactoe.model;
 
-import com.google.api.client.json.GenericJson;
-
 /**
  * Model definition for User.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
- * transmitted over HTTP when working with the . For a detailed explanation see:
- * <a href="http://code.google.com/p/google-api-java-client/wiki/Json">http://code.google.com/p/google-api-java-client/wiki/Json</a>
- * </p>
- *
- * <p>
- * Upgrade warning: starting with version 1.12 {@code getResponseHeaders()} is removed, instead use
- * {@link com.google.api.client.http.json.JsonHttpRequest#getLastResponseHeaders()}
+ * transmitted over HTTP when working with the tictactoe. For a detailed explanation see:
+ * <a href="http://code.google.com/p/google-http-java-client/wiki/JSON">http://code.google.com/p/google-http-java-client/wiki/JSON</a>
  * </p>
  *
  * @author Google, Inc.
  */
 @SuppressWarnings("javadoc")
-public final class User extends GenericJson {
+public final class User extends com.google.api.client.json.GenericJson {
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private String authDomain;
+    /**
+     * The value may be {@code null}.
+     */
+    @com.google.api.client.util.Key
+    private java.lang.String authDomain;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private String email;
+    /**
+     * The value may be {@code null}.
+     */
+    @com.google.api.client.util.Key
+    private java.lang.String email;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private String federatedIdentity;
+    /**
+     * The value may be {@code null}.
+     */
+    @com.google.api.client.util.Key
+    private java.lang.String federatedIdentity;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private String nickname;
+    /**
+     * The value may be {@code null}.
+     */
+    @com.google.api.client.util.Key
+    private java.lang.String nickname;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private String userId;
+    /**
+     * The value may be {@code null}.
+     */
+    @com.google.api.client.util.Key
+    private java.lang.String userId;
 
-  /**
+    /**
+     * @return value or {@code null} for none
+     */
+    public java.lang.String getAuthDomain() {
+        return authDomain;
+    }
 
-   * The value returned may be {@code null}.
-   */
-  public String getAuthDomain() {
-    return authDomain;
-  }
+    /**
+     * @param authDomain authDomain or {@code null} for none
+     */
+    public User setAuthDomain(java.lang.String authDomain) {
+        this.authDomain = authDomain;
+        return this;
+    }
 
-  /**
+    /**
+     * @return value or {@code null} for none
+     */
+    public java.lang.String getEmail() {
+        return email;
+    }
 
-   * The value set may be {@code null}.
-   */
-  public User setAuthDomain(String authDomain) {
-    this.authDomain = authDomain;
-    return this;
-  }
+    /**
+     * @param email email or {@code null} for none
+     */
+    public User setEmail(java.lang.String email) {
+        this.email = email;
+        return this;
+    }
 
-  /**
+    /**
+     * @return value or {@code null} for none
+     */
+    public java.lang.String getFederatedIdentity() {
+        return federatedIdentity;
+    }
 
-   * The value returned may be {@code null}.
-   */
-  public String getEmail() {
-    return email;
-  }
+    /**
+     * @param federatedIdentity federatedIdentity or {@code null} for none
+     */
+    public User setFederatedIdentity(java.lang.String federatedIdentity) {
+        this.federatedIdentity = federatedIdentity;
+        return this;
+    }
 
-  /**
+    /**
+     * @return value or {@code null} for none
+     */
+    public java.lang.String getNickname() {
+        return nickname;
+    }
 
-   * The value set may be {@code null}.
-   */
-  public User setEmail(String email) {
-    this.email = email;
-    return this;
-  }
+    /**
+     * @param nickname nickname or {@code null} for none
+     */
+    public User setNickname(java.lang.String nickname) {
+        this.nickname = nickname;
+        return this;
+    }
 
-  /**
+    /**
+     * @return value or {@code null} for none
+     */
+    public java.lang.String getUserId() {
+        return userId;
+    }
 
-   * The value returned may be {@code null}.
-   */
-  public String getFederatedIdentity() {
-    return federatedIdentity;
-  }
+    /**
+     * @param userId userId or {@code null} for none
+     */
+    public User setUserId(java.lang.String userId) {
+        this.userId = userId;
+        return this;
+    }
 
-  /**
+    @Override
+    public User set(String fieldName, Object value) {
+        return (User) super.set(fieldName, value);
+    }
 
-   * The value set may be {@code null}.
-   */
-  public User setFederatedIdentity(String federatedIdentity) {
-    this.federatedIdentity = federatedIdentity;
-    return this;
-  }
-
-  /**
-
-   * The value returned may be {@code null}.
-   */
-  public String getNickname() {
-    return nickname;
-  }
-
-  /**
-
-   * The value set may be {@code null}.
-   */
-  public User setNickname(String nickname) {
-    this.nickname = nickname;
-    return this;
-  }
-
-  /**
-
-   * The value returned may be {@code null}.
-   */
-  public String getUserId() {
-    return userId;
-  }
-
-  /**
-
-   * The value set may be {@code null}.
-   */
-  public User setUserId(String userId) {
-    this.userId = userId;
-    return this;
-  }
+    @Override
+    public User clone() {
+        return (User) super.clone();
+    }
 
 }

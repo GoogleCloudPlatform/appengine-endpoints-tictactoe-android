@@ -1,11 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="2" >
-
-    <dataSet config="main" >
-        <source path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/main/assets" />
-    </dataSet>
-    <dataSet config="debug" >
-        <source path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/debug/assets" />
-    </dataSet>
-
-</merger>
+<merger version="3"><dataSet config="22.0.0"><source path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.0.0/assets"/></dataSet><dataSet config="main"><source path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Users/ossamaa/dev/appengine-endpoints-tictactoe-android/app/src/debug/assets"/></dataSet></merger>

@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 15
-    buildToolsVersion "20.0.0"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "com.google.devrel.samples.ttt"
@@ -12,8 +12,17 @@ android {
 
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
 }
+
+dependencies {
+    // Google Play Services
+    compile 'com.google.android.gms:play-services:7.0.0'
+    compile 'com.google.api-client:google-api-client-android:1.20.0'
+    compile 'com.google.http-client:google-http-client-gson:1.20.0'
+}
+
+

@@ -15,118 +15,111 @@
 
 package com.google.api.services.tictactoe.model;
 
-import com.google.api.client.json.GenericJson;
-import com.google.api.client.json.JsonString;
-import com.google.api.client.util.DateTime;
-
 /**
  * Model definition for Score.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
- * transmitted over HTTP when working with the . For a detailed explanation see:
- * <a href="http://code.google.com/p/google-api-java-client/wiki/Json">http://code.google.com/p/google-api-java-client/wiki/Json</a>
- * </p>
- *
- * <p>
- * Upgrade warning: starting with version 1.12 {@code getResponseHeaders()} is removed, instead use
- * {@link com.google.api.client.http.json.JsonHttpRequest#getLastResponseHeaders()}
+ * transmitted over HTTP when working with the tictactoe. For a detailed explanation see:
+ * <a href="http://code.google.com/p/google-http-java-client/wiki/JSON">http://code.google.com/p/google-http-java-client/wiki/JSON</a>
  * </p>
  *
  * @author Google, Inc.
  */
 @SuppressWarnings("javadoc")
-public final class Score extends GenericJson {
+public final class Score extends com.google.api.client.json.GenericJson {
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key @JsonString
-  private Long id;
+    /**
+     * The value may be {@code null}.
+     */
+    @com.google.api.client.util.Key @com.google.api.client.json.JsonString
+    private java.lang.Long id;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private String outcome;
+    /**
+     * The value may be {@code null}.
+     */
+    @com.google.api.client.util.Key
+    private java.lang.String outcome;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private DateTime played;
+    /**
+     * The value may be {@code null}.
+     */
+    @com.google.api.client.util.Key
+    private com.google.api.client.util.DateTime played;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private User player;
+    /**
+     * The value may be {@code null}.
+     */
+    @com.google.api.client.util.Key
+    private User player;
 
-  /**
+    /**
+     * @return value or {@code null} for none
+     */
+    public java.lang.Long getId() {
+        return id;
+    }
 
-   * The value returned may be {@code null}.
-   */
-  public Long getId() {
-    return id;
-  }
+    /**
+     * @param id id or {@code null} for none
+     */
+    public Score setId(java.lang.Long id) {
+        this.id = id;
+        return this;
+    }
 
-  /**
+    /**
+     * @return value or {@code null} for none
+     */
+    public java.lang.String getOutcome() {
+        return outcome;
+    }
 
-   * The value set may be {@code null}.
-   */
-  public Score setId(Long id) {
-    this.id = id;
-    return this;
-  }
+    /**
+     * @param outcome outcome or {@code null} for none
+     */
+    public Score setOutcome(java.lang.String outcome) {
+        this.outcome = outcome;
+        return this;
+    }
 
-  /**
+    /**
+     * @return value or {@code null} for none
+     */
+    public com.google.api.client.util.DateTime getPlayed() {
+        return played;
+    }
 
-   * The value returned may be {@code null}.
-   */
-  public String getOutcome() {
-    return outcome;
-  }
+    /**
+     * @param played played or {@code null} for none
+     */
+    public Score setPlayed(com.google.api.client.util.DateTime played) {
+        this.played = played;
+        return this;
+    }
 
-  /**
+    /**
+     * @return value or {@code null} for none
+     */
+    public User getPlayer() {
+        return player;
+    }
 
-   * The value set may be {@code null}.
-   */
-  public Score setOutcome(String outcome) {
-    this.outcome = outcome;
-    return this;
-  }
+    /**
+     * @param player player or {@code null} for none
+     */
+    public Score setPlayer(User player) {
+        this.player = player;
+        return this;
+    }
 
-  /**
+    @Override
+    public Score set(String fieldName, Object value) {
+        return (Score) super.set(fieldName, value);
+    }
 
-   * The value returned may be {@code null}.
-   */
-  public DateTime getPlayed() {
-    return played;
-  }
-
-  /**
-
-   * The value set may be {@code null}.
-   */
-  public Score setPlayed(DateTime played) {
-    this.played = played;
-    return this;
-  }
-
-  /**
-
-   * The value returned may be {@code null}.
-   */
-  public User getPlayer() {
-    return player;
-  }
-
-  /**
-
-   * The value set may be {@code null}.
-   */
-  public Score setPlayer(User player) {
-    this.player = player;
-    return this;
-  }
+    @Override
+    public Score clone() {
+        return (Score) super.clone();
+    }
 
 }

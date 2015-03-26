@@ -14,48 +14,48 @@
  */
 
 package com.google.api.services.tictactoe.model;
-
-import com.google.api.client.json.GenericJson;
-
 /**
  * Model definition for Board.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
- * transmitted over HTTP when working with the . For a detailed explanation see:
- * <a href="http://code.google.com/p/google-api-java-client/wiki/Json">http://code.google.com/p/google-api-java-client/wiki/Json</a>
- * </p>
- *
- * <p>
- * Upgrade warning: starting with version 1.12 {@code getResponseHeaders()} is removed, instead use
- * {@link com.google.api.client.http.json.JsonHttpRequest#getLastResponseHeaders()}
+ * transmitted over HTTP when working with the tictactoe. For a detailed explanation see:
+ * <a href="http://code.google.com/p/google-http-java-client/wiki/JSON">http://code.google.com/p/google-http-java-client/wiki/JSON</a>
  * </p>
  *
  * @author Google, Inc.
  */
 @SuppressWarnings("javadoc")
-public final class Board extends GenericJson {
+public final class Board extends com.google.api.client.json.GenericJson {
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private String state;
+    /**
+     * The value may be {@code null}.
+     */
+    @com.google.api.client.util.Key
+    private java.lang.String state;
 
-  /**
+    /**
+     * @return value or {@code null} for none
+     */
+    public java.lang.String getState() {
+        return state;
+    }
 
-   * The value returned may be {@code null}.
-   */
-  public String getState() {
-    return state;
-  }
+    /**
+     * @param state state or {@code null} for none
+     */
+    public Board setState(java.lang.String state) {
+        this.state = state;
+        return this;
+    }
 
-  /**
+    @Override
+    public Board set(String fieldName, Object value) {
+        return (Board) super.set(fieldName, value);
+    }
 
-   * The value set may be {@code null}.
-   */
-  public Board setState(String state) {
-    this.state = state;
-    return this;
-  }
+    @Override
+    public Board clone() {
+        return (Board) super.clone();
+    }
 
 }
